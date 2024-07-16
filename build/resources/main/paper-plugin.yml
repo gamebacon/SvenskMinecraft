@@ -1,0 +1,4 @@
+name: SvenskMinecraft
+version: '1.0-SNAPSHOT'
+main: se.svenskminecraft.svenskminecraft.SvenskMinecraft
+api-version: '1.21'
