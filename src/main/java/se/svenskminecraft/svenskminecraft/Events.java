@@ -31,7 +31,10 @@ public class Events implements Listener {
         Bukkit.getBanList(BanListType.PROFILE).addBan(profile, msg, duration, "123");
         Component deathMessage = event.deathMessage();
         PlayerKickEvent.Cause cause = PlayerKickEvent.Cause.BANNED;
-        event.getPlayer().kick(deathMessage, cause);
+        Component c = deathMessage
+                .appendNewline().append(Component.text(msg));
+
+        event.getPlayer().kick(c, cause);
     }
 
 }
