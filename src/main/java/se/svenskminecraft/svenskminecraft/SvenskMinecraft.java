@@ -7,7 +7,8 @@ public final class SvenskMinecraft extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        System.out.println("Hello world!");
+        getLogger().info("Hello world!");
+        getServer().getPluginManager().registerEvents(new Events(), this);
 
     }
 
