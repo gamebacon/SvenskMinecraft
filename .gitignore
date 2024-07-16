@@ -23,7 +23,7 @@ atlassian-ide-plugin.xml
 *.ctxt
 
 # Package Files #
-*.jar
+# *.jar
 *.war
 *.nar
 *.ear
@@ -102,7 +102,6 @@ $RECYCLE.BIN/
 
 .gradle
 build/
-!build/libs/**
 
 # Ignore Gradle GUI config
 gradle-app.setting
