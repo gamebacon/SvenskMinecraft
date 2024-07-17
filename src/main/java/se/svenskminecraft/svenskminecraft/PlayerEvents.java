@@ -37,6 +37,14 @@ public class PlayerEvents implements Listener {
     }
 
     @EventHandler
+    public void onPlayerRespawn(PlayerRespawnEvent event) {
+        event.getPlayer().setGameMode(GameMode.SURVIVAL);
+        System.out.println("surv!");
+    }
+
+
+
+    @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event) {
         String message = event.getMessage().toLowerCase();
 
