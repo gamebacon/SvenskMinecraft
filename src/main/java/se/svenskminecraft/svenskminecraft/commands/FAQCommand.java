@@ -15,9 +15,9 @@ public class FAQCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        sender.sendMessage("§aServer FAQ:");
+        sender.sendMessage("FAQ:");
         for (String faq : plugin.getConfig().getStringList("faq")) {
-            sender.sendMessage("§7- " + faq);
+            sender.sendMessage(faq);
         }
         return true;
     }

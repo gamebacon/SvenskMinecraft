@@ -15,9 +15,9 @@ public class RulesCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        sender.sendMessage("§aServer Rules:");
+        sender.sendMessage("§aRegler:");
         for (String rule : plugin.getConfig().getStringList("rules")) {
-            sender.sendMessage("§7- " + rule);
+            sender.sendMessage(rule);
         }
         return true;
     }

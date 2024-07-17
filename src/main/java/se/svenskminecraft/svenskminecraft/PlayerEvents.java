@@ -18,12 +18,11 @@ public class PlayerEvents implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        event.getPlayer().sendMessage("Välkommen!");
+        event.getPlayer().setGameMode(GameMode.SURVIVAL);
     }
 
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent  event) {
-        event.getPlayer().setGameMode(GameMode.SURVIVAL);
     }
 
     @EventHandler
@@ -32,11 +31,8 @@ public class PlayerEvents implements Listener {
         PlayerProfile profile = event.getPlayer().getPlayerProfile();
         Duration duration = Duration.ofDays(7);
         String msg = "Du dog.";
-        Bukkit.getBanList(BanListType.PROFILE).addBan(profile, msg, duration, "123");
-        Component deathMessage = event.deathMessage();
-        PlayerKickEvent.Cause cause = PlayerKickEvent.Cause.BANNED;
-        Component c = deathMessage.append(Component.text(msg));
-        event.getPlayer().kick(c, cause);
+        Bukkit.getBanList(BanListType.PROFILE).addBan(profile, msg, duration, "");
+        event.getPlayer().kick(Component.text(msg));
     }
 
 }
