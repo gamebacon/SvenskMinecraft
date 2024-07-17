@@ -8,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.*;
 
 import java.time.Instant;
@@ -37,6 +38,15 @@ public class PlayerEvents implements Listener {
         World world = event.getPlayer().getWorld();
         world.setTime(1_000);
         world.setStorm(false);
+    }
+
+    @EventHandler
+    public void onPlayerDeath(PlayerDeathEvent event) {
+        String msg = "Du dog.";
+        PlayerProfile profile = event.getPlayer().getPlayerProfile();
+        Instant instant = null;
+        Bukkit.getBanList(BanListType.PROFILE).addBan(profile, msg, instant, msg);
+        event.getPlayer().kick(Component.text(msg));
     }
 
     @EventHandler
