@@ -60,7 +60,6 @@ public class PlayerEvents implements Listener {
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
-        event.getPlayer().setGameMode(GameMode.SURVIVAL);
         event.getPlayer().sendMessage("Player died!!");
         PlayerProfile profile = event.getPlayer().getPlayerProfile();
         Duration duration = Duration.ofDays(7);
