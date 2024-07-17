@@ -24,6 +24,13 @@ public class PlayerEvents implements Listener {
         bannedWords = plugin.getConfig().getStringList("banned-words");
     }
 
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        if (event.getPlayer().hasPlayedBefore()) {
+            String msg = "Välkommen! kom igång med /regler och /faq";
+            event.joinMessage(Component.text(msg));
+        }
+    }
 
     @EventHandler
     public void onPlayerSleep(PlayerDeepSleepEvent event) {
