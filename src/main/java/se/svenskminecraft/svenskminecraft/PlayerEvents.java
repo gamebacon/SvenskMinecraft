@@ -30,6 +30,13 @@ public class PlayerEvents implements Listener {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
         if (event.getPlayer().getGameMode() == GameMode.SPECTATOR) {
+            event.getPlayer().kick(Component.text("Du dog"));
+        }
+    }
+
+    @EventHandler
+    public void onPlayerJoin(PlayerMoveEvent event) {
+        if (event.getPlayer().getGameMode() == GameMode.SPECTATOR) {
             event.getPlayer().setGameMode(GameMode.SURVIVAL);
         }
     }
@@ -60,12 +67,9 @@ public class PlayerEvents implements Listener {
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
-        event.getPlayer().sendMessage("Player died!!");
         PlayerProfile profile = event.getPlayer().getPlayerProfile();
         Duration duration = Duration.ofDays(7);
-        String msg = "Du dog.";
-        Bukkit.getBanList(BanListType.PROFILE).addBan(profile, msg, duration, "");
-        event.getPlayer().kick(Component.text(msg));
+        Bukkit.getBanList(BanListType.PROFILE).addBan(profile, "Du dog", duration, "");
     }
 
 }
