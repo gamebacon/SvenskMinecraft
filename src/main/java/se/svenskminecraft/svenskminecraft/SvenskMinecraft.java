@@ -10,8 +10,8 @@ public final class SvenskMinecraft extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         saveDefaultConfig();
-        getLogger().info("SvenskMinecraft has been enabled!");
         getServer().getPluginManager().registerEvents(new PlayerEvents(), this);
+        getLogger().info("hej!");
 
         // Register commands
         if (getCommand("regler") != null) {
@@ -22,6 +22,8 @@ public final class SvenskMinecraft extends JavaPlugin {
             System.out.println(getCommand("faq"));
             getCommand("faq").setExecutor(new FAQCommand(this));
         }
+
+        getLogger().info("SvenskMinecraft has been enabled!!!");
     }
 
     @Override
