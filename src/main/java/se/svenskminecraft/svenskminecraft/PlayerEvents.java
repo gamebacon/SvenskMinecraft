@@ -2,6 +2,7 @@ package se.svenskminecraft.svenskminecraft;
 
 import com.destroystokyo.paper.profile.PlayerProfile;
 import io.papermc.paper.ban.BanListType;
+import io.papermc.paper.event.player.PlayerDeepSleepEvent;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -34,6 +35,11 @@ public class PlayerEvents implements Listener {
 
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent  event) {
+
+    }
+    @EventHandler
+    public void onPlayerSleep(PlayerDeepSleepEvent event) {
+        event.getPlayer().getWorld().setTime(24_000);
     }
 
     @EventHandler
@@ -47,6 +53,7 @@ public class PlayerEvents implements Listener {
                 String msg = String.format("Du är banned för att brytit mot reglarna: \"%s\" ", word);
                 Instant duration = null;
                 Bukkit.getBanList(BanListType.PROFILE).addBan(profile, msg, duration, "");
+                event.getPlayer().kick(Component.text(msg));
                 return;
             }
         }
