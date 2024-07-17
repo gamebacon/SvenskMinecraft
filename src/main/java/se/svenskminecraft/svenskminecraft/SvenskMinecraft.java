@@ -15,9 +15,11 @@ public final class SvenskMinecraft extends JavaPlugin {
 
         // Register commands
         if (getCommand("regler") != null) {
+            System.out.println(getCommand("regler"));
             getCommand("regler").setExecutor(new RulesCommand(this));
         }
         if (getCommand("faq") != null) {
+            System.out.println(getCommand("faq"));
             getCommand("faq").setExecutor(new FAQCommand(this));
         }
     }
