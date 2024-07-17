@@ -56,7 +56,7 @@ public class PlayerEvents implements Listener {
                 String msg = String.format("Du är banned för att brytit mot reglarna: \"%s\" ", word);
                 Instant duration = null;
                 Bukkit.getBanList(BanListType.PROFILE).addBan(profile, msg, duration, "");
-                event.getPlayer().kick(Component.text(msg));
+                Bukkit.getScheduler().runTask(plugin, () -> event.getPlayer().kick(Component.text(msg)));
                 return;
             }
         }
