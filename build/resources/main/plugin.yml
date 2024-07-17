@@ -6,10 +6,6 @@ commands:
   regler:
     description: Displays the server rules.
     usage: /regler
-    permission: svenskminecraft.regler
-    permission-message: You do not have permission to use this command.
   faq:
     description: Displays the server FAQ.
     usage: /faq
-    permission: svenskminecraft.faq
-    permission-message: You do not have permission to use this command.
