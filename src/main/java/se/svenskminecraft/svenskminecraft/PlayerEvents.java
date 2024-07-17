@@ -5,14 +5,11 @@ import io.papermc.paper.ban.BanListType;
 import io.papermc.paper.event.player.PlayerDeepSleepEvent;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
 import org.bukkit.World;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.*;
 
-import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -27,19 +24,6 @@ public class PlayerEvents implements Listener {
         bannedWords = plugin.getConfig().getStringList("banned-words");
     }
 
-    @EventHandler
-    public void onPlayerMove(PlayerMoveEvent event) {
-        if (event.getPlayer().getGameMode() == GameMode.SPECTATOR) {
-            event.getPlayer().kick(Component.text("Du dog"));
-        }
-    }
-
-    @EventHandler
-    public void onPlayerJoin(PlayerMoveEvent event) {
-        if (event.getPlayer().getGameMode() == GameMode.SPECTATOR) {
-            event.getPlayer().setGameMode(GameMode.SURVIVAL);
-        }
-    }
 
     @EventHandler
     public void onPlayerSleep(PlayerDeepSleepEvent event) {
@@ -63,13 +47,6 @@ public class PlayerEvents implements Listener {
                 return;
             }
         }
-    }
-
-    @EventHandler
-    public void onPlayerDeath(PlayerDeathEvent event) {
-        PlayerProfile profile = event.getPlayer().getPlayerProfile();
-        Duration duration = Duration.ofDays(7);
-        Bukkit.getBanList(BanListType.PROFILE).addBan(profile, "Du dog", duration, "");
     }
 
 }
