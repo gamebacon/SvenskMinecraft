@@ -39,6 +39,7 @@ public class PlayerEvents implements Listener {
 
     @EventHandler
     public void onPlayerGameModeChangeEvent(PlayerGameModeChangeEvent event) {
+        event.setCancelled(true);
         event.getPlayer().setGameMode(GameMode.SURVIVAL);
     }
 
