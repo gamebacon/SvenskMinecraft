@@ -2,3 +2,14 @@ name: SvenskMinecraft
 version: '1.0-SNAPSHOT'
 main: se.svenskminecraft.svenskminecraft.SvenskMinecraft
 api-version: '1.21'
+commands:
+  regler:
+    description: Displays the server rules.
+    usage: /regler
+    permission: svenskminecraft.regler
+    permission-message: You do not have permission to use this command.
+  faq:
+    description: Displays the server FAQ.
+    usage: /faq
+    permission: svenskminecraft.faq
+    permission-message: You do not have permission to use this command.

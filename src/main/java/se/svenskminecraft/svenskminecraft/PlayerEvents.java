@@ -14,7 +14,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 
 import java.time.Duration;
 
-public class Events implements Listener {
+public class PlayerEvents implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
