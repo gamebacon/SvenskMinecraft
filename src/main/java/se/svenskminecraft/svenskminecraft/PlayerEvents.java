@@ -24,7 +24,7 @@ public class PlayerEvents implements Listener {
 
     public PlayerEvents(SvenskMinecraft plugin) {
         this.plugin = plugin;
-        bannedWords = plugin.getConfig().getStringList("bannedWords");
+        bannedWords = plugin.getConfig().getStringList("banned-words");
     }
 
     @EventHandler
@@ -45,7 +45,8 @@ public class PlayerEvents implements Listener {
                 event.setCancelled(true);
                 PlayerProfile profile = event.getPlayer().getPlayerProfile();
                 String msg = String.format("Du är banned för att brytit mot reglarna: \"%s\" ", word);
-                Bukkit.getBanList(BanListType.PROFILE).addBan(profile, msg, Instant.MAX, "");
+                Instant duration = null;
+                Bukkit.getBanList(BanListType.PROFILE).addBan(profile, msg, duration, "");
                 return;
             }
         }
