@@ -11,6 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerGameModeChangeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
@@ -37,12 +38,9 @@ public class PlayerEvents implements Listener {
     }
 
     @EventHandler
-    public void onPlayerRespawn(PlayerRespawnEvent event) {
+    public void onPlayerGameModeChangeEvent(PlayerGameModeChangeEvent event) {
         event.getPlayer().setGameMode(GameMode.SURVIVAL);
-        System.out.println("surv!");
     }
-
-
 
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event) {
