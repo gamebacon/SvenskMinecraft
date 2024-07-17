@@ -11,7 +11,7 @@ public final class SvenskMinecraft extends JavaPlugin {
         // Plugin startup logic
         saveDefaultConfig();
         getServer().getPluginManager().registerEvents(new PlayerEvents(), this);
-        getLogger().info("hej!");
+        getLogger().info("hej igen!");
 
         // Register commands
         if (getCommand("regler") != null) {
