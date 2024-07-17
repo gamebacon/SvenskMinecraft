@@ -10,7 +10,7 @@ public final class SvenskMinecraft extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         saveDefaultConfig();
-        getServer().getPluginManager().registerEvents(new PlayerEvents(), this);
+        getServer().getPluginManager().registerEvents(new PlayerEvents(this), this);
         getLogger().info("hej igen!");
 
         // Register commands

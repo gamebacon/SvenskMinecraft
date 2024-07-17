@@ -8,12 +8,24 @@ import org.bukkit.GameMode;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 import java.time.Duration;
+import java.time.Instant;
+import java.util.List;
+import java.util.regex.Pattern;
 
 public class PlayerEvents implements Listener {
+
+    private SvenskMinecraft plugin;
+    private List<String> bannedWords;
+
+    public PlayerEvents(SvenskMinecraft plugin) {
+        this.plugin = plugin;
+        bannedWords = plugin.getConfig().getStringList("bannedWords");
+    }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
@@ -22,6 +34,21 @@ public class PlayerEvents implements Listener {
 
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent  event) {
+    }
+
+    @EventHandler
+    public void onPlayerChat(AsyncPlayerChatEvent event) {
+        String message = event.getMessage().toLowerCase();
+
+        for (String word : bannedWords) {
+            if (Pattern.compile("\\b" + Pattern.quote(word) + "\\b").matcher(message).find()) {
+                event.setCancelled(true);
+                PlayerProfile profile = event.getPlayer().getPlayerProfile();
+                String msg = String.format("Du är banned för att brytit mot reglarna: \"%s\" ", word);
+                Bukkit.getBanList(BanListType.PROFILE).addBan(profile, msg, Instant.MAX, "");
+                return;
+            }
+        }
     }
 
     @EventHandler
