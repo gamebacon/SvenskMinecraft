@@ -30,15 +30,6 @@ public class PlayerEvents implements Listener {
     }
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
-        event.getPlayer().setGameMode(GameMode.SURVIVAL);
-    }
-
-    @EventHandler
-    public void onPlayerRespawn(PlayerRespawnEvent  event) {
-
-    }
-    @EventHandler
     public void onPlayerSleep(PlayerDeepSleepEvent event) {
         World world = event.getPlayer().getWorld();
         world.setTime(1_000);
@@ -53,7 +44,7 @@ public class PlayerEvents implements Listener {
             if (Pattern.compile("\\b" + Pattern.quote(word) + "\\b").matcher(message).find()) {
                 event.setCancelled(true);
                 PlayerProfile profile = event.getPlayer().getPlayerProfile();
-                String msg = String.format("Du är banned för att brytit mot reglarna: \"%s\" ", word);
+                String msg = String.format("Du är banned för att ha brytit mot reglarna: \"%s\" ", word);
                 Instant duration = null;
                 Bukkit.getBanList(BanListType.PROFILE).addBan(profile, msg, duration, "");
                 Bukkit.getScheduler().runTask(plugin, () -> event.getPlayer().kick(Component.text(msg)));
@@ -64,6 +55,7 @@ public class PlayerEvents implements Listener {
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
+        event.getPlayer().setGameMode(GameMode.SURVIVAL);
         event.getPlayer().sendMessage("Player died!!");
         PlayerProfile profile = event.getPlayer().getPlayerProfile();
         Duration duration = Duration.ofDays(7);
