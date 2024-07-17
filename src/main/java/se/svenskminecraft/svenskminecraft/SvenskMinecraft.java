@@ -11,17 +11,12 @@ public final class SvenskMinecraft extends JavaPlugin {
         // Plugin startup logic
         saveDefaultConfig();
         getServer().getPluginManager().registerEvents(new PlayerEvents(this), this);
+        getServer().getPluginManager().registerEvents(new EntityEvents(this), this);
         getLogger().info("hej igen!");
 
         // Register commands
-        if (getCommand("regler") != null) {
-            System.out.println(getCommand("regler"));
-            getCommand("regler").setExecutor(new RulesCommand(this));
-        }
-        if (getCommand("faq") != null) {
-            System.out.println(getCommand("faq"));
-            getCommand("faq").setExecutor(new FAQCommand(this));
-        }
+        getCommand("regler").setExecutor(new RulesCommand(this));
+        getCommand("faq").setExecutor(new FAQCommand(this));
 
         getLogger().info("SvenskMinecraft has been enabled!!!");
     }
