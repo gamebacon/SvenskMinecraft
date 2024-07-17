@@ -29,9 +29,10 @@ public class EntityEvents implements Listener {
 
     @EventHandler
     public void onExplode(EntityExplodeEvent event) {
+        plugin.getLogger().info("123" + event.getEntity().getType());
         if(event.getEntity().getType() == EntityType.CREEPER) {
             float explosion = (float) plugin.getConfig().getDouble("creeper-explosion");
-            plugin.getLogger().info("" + explosion);
+            plugin.getLogger().info(">>>>>" + explosion);
             event.setYield(explosion);
         }
     }
