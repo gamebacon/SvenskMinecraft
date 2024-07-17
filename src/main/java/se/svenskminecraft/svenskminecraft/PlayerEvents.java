@@ -10,10 +10,7 @@ import org.bukkit.World;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerGameModeChangeEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.event.player.*;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -31,16 +28,17 @@ public class PlayerEvents implements Listener {
     }
 
     @EventHandler
+    public void onPlayerMove(PlayerMoveEvent event) {
+        if (event.getPlayer().getGameMode() == GameMode.SPECTATOR) {
+            event.getPlayer().setGameMode(GameMode.SURVIVAL);
+        }
+    }
+
+    @EventHandler
     public void onPlayerSleep(PlayerDeepSleepEvent event) {
         World world = event.getPlayer().getWorld();
         world.setTime(1_000);
         world.setStorm(false);
-    }
-
-    @EventHandler
-    public void onPlayerGameModeChangeEvent(PlayerGameModeChangeEvent event) {
-        event.setCancelled(true);
-        event.getPlayer().setGameMode(GameMode.SURVIVAL);
     }
 
     @EventHandler
