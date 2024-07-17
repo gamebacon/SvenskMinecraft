@@ -26,7 +26,7 @@ public class PlayerEvents implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        if (event.getPlayer().hasPlayedBefore()) {
+        if (!event.getPlayer().hasPlayedBefore()) {
             String msg = "Välkommen! kom igång med /regler och /faq";
             event.joinMessage(Component.text(msg));
         }
