@@ -6,6 +6,7 @@ import io.papermc.paper.event.player.PlayerDeepSleepEvent;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.World;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -39,7 +40,9 @@ public class PlayerEvents implements Listener {
     }
     @EventHandler
     public void onPlayerSleep(PlayerDeepSleepEvent event) {
-        event.getPlayer().getWorld().setTime(24_000);
+        World world = event.getPlayer().getWorld();
+        world.setTime(1_000);
+        world.setStorm(false);
     }
 
     @EventHandler
